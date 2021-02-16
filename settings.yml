@@ -15,15 +15,15 @@ user:
   #   target:
   #     PHP_VERSION
 
-  # install_xdebug:
-  #   label:
-  #     Install XDEBUG?
-  #   type:
-  #     checkbox
-  #   hint:
-  #     Check to enable XDEBUG installation
-  #   target:
-  #     INSTALL_XDEBUG
+  wp_debug:
+    label:
+      Enable WordPress debug mode?
+    type:
+      checkbox
+    hint:
+      Check to enable WordPress debug mode
+    target:
+      WORDPRESS_DEBUG
   # mysql_version:
   #   label:
   #     MySQL version
