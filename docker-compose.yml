@@ -6,7 +6,7 @@ services:
     ports:
       - "${WP_HTTP_PORT}:80"
     environment:
-      - "WORDPRESS_DB_NAME=${DB_DATABASE}"
+      - "WORDPRESS_DB_NAME=${DB_NAME}"
       - "WORDPRESS_DB_USER=${DB_USER}"
       - "WORDPRESS_DB_PASSWORD=${DB_PASSWORD}"
       - "WORDPRESS_DB_HOST=mysql"
@@ -20,7 +20,7 @@ services:
       - "MYSQL_DATABASE=${DB_NAME}"
       - "MYSQL_USER=${DB_USER}"
       - "MYSQL_PASSWORD=${DB_PASSWORD}"
-      - "MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}"
+      - "MYSQL_ROOT_PASSWORD=${DB_PASSWORD}"
     volumes:
       - "${DATA_PATH_HOST}/mysql:/app"
       - "${MYSQL_PATH}/my.cnf:/etc/mysql/my.cnf"
@@ -30,9 +30,9 @@ services:
     build: "./phpmyadmin"
     environment:
       - "PMA_ARBITRARY=1"
-      - "MYSQL_USER=${PMA_USER}"
-      - "MYSQL_PASSWORD=${PMA_PASSWORD}"
-      - "MYSQL_ROOT_PASSWORD=${PMA_ROOT_PASSWORD}"
+      - "MYSQL_USER=${DB_NAME}"
+      - "MYSQL_PASSWORD=${DB_PASSWORD}"
+      - "MYSQL_ROOT_PASSWORD=${DB_PASSWORD}"
     ports:
       - "${PMA_PORT}:80"
 volumes:
