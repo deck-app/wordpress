@@ -50,6 +50,20 @@ user:
   #     DOCUMENT_ROOT
 
 #System defaults
+MariaDB_version:
+    label:
+      MariaDB version
+    hint:
+      Select a MariaDB version from the list above
+    type:
+      select
+    values:
+      - latest
+      - 10.7
+      - 10.6
+      - 10.5
+    target:
+      MARIADB_VERSION
 system:
   show_localpath_selector:
     true
