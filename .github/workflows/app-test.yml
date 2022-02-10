@@ -67,6 +67,8 @@ jobs:
       run : docker exec wordpress_wordpress_1 php -v
     - name: Mysql Driver check
       run: docker exec wordpress_wordpress_1 php -m | grep mysqli
+    - name: Log check list
+      run: docker exec wordpress_wordpress_1 logs
     - name: Web site Test
       run: |
         sleep 90s
