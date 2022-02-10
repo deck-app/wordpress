@@ -30,7 +30,7 @@ jobs:
     - name: Web site Test
       run: |
         sleep 50s
-        sudo curl -I --http2 http://localhost:44181/
+        sudo curl -I --http2 http://localhost:44181/ | grep http
     - name: Verify MariaDB running from host, create Database and show Database
       run: |
         sleep 30s
@@ -49,48 +49,51 @@ jobs:
         sudo rm -rf /tmp/db
         echo "y" | docker image prune -a
         echo "y" | docker volume prune
-  Wordpress-Mariadb-ARM64:
-    runs-on: self-hosted
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image wordpress latest
-      run: docker-compose -f "docker-compose.yml" up -d --build
-      env:
-          MARIADB_VERSION: latest
-          APP_CODE_PATH_HOST: /tmp/app
-          DB_NAME: test
-          DB_USER:  admin
-          DB_PASSWORD:  password
-          DB_ROOT_PASSWORD: password
-          DATA_PATH_HOST: /tmp/db
-    - name: PHP version check
-      run : docker exec wordpress_wordpress_1 php -v
-    - name: Mysql Driver check
-      run: docker exec wordpress_wordpress_1 php -m | grep mysqli
-    - name: Log check list
-      run: docker logs wordpress_wordpress_1 
-    - name: Web site Test
-      run: |
-        curl -i http://localhost:44181/
-    - name: Verify MariaDB running from host, create Database and show Database
-      run: |
-        sleep 30s
-    - name: Check MariaDB version
-      run:  docker exec wordpress_mysql_1 mysql -uroot -ppassword -e "SHOW VARIABLES LIKE '%version%';"
-    - name: Verify MariaDB database from user
-      run:  docker exec wordpress_mysql_1 mysql -uadmin -ppassword -e "SHOW DATABASES"
-    - name: Create a Database
-      run:  docker exec wordpress_mysql_1 mysql -uroot -ppassword -e "CREATE DATABASE deckapp"
-    - name: Verify Database create or not
-      run:  docker exec wordpress_mysql_1 mysql -uroot -ppassword -e "SHOW DATABASES"
-    - name: Destroy Container 
-      run: |
-        docker-compose down
-        echo "password" | sudo -S whoami
-        sudo rm -rf /tmp/app/
-        sudo rm -rf /tmp/db/
-        echo "y" | docker image prune -a
-        echo "y" | docker volume prune
+  # Wordpress-Mariadb-ARM64:
+  #   runs-on: self-hosted
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Build the Docker image wordpress latest
+  #     run: docker-compose -f "docker-compose.yml" up -d --build
+  #     env:
+  #         MARIADB_VERSION: latest
+  #         APP_CODE_PATH_HOST: /tmp/app
+  #         DB_NAME: test
+  #         DB_USER:  admin
+  #         DB_PASSWORD:  password
+  #         DB_ROOT_PASSWORD: password
+  #         DATA_PATH_HOST: /tmp/db
+  #   - name: PHP version check
+  #     run : docker exec wordpress_wordpress_1 php -v
+  #   - name: Mysql Driver check
+  #     run: docker exec wordpress_wordpress_1 php -m | grep mysqli
+  #   - name: Log check list
+  #     run: docker logs wordpress_wordpress_1 
+  #   - name: Web site Test
+  #     run: |
+  #       sleep 90s
+  #       curl -i http://localhost:44181/ | grep http
+  #   - name: Check velidetion
+  #     if: 302 == 'refs/heads/master'
+  #   - name: Verify MariaDB running from host, create Database and show Database
+  #     run: |
+  #       sleep 30s
+  #   - name: Check MariaDB version
+  #     run:  docker exec wordpress_mysql_1 mysql -uroot -ppassword -e "SHOW VARIABLES LIKE '%version%';"
+  #   - name: Verify MariaDB database from user
+  #     run:  docker exec wordpress_mysql_1 mysql -uadmin -ppassword -e "SHOW DATABASES"
+  #   - name: Create a Database
+  #     run:  docker exec wordpress_mysql_1 mysql -uroot -ppassword -e "CREATE DATABASE deckapp"
+  #   - name: Verify Database create or not
+  #     run:  docker exec wordpress_mysql_1 mysql -uroot -ppassword -e "SHOW DATABASES"
+  #   - name: Destroy Container 
+  #     run: |
+  #       docker-compose down
+  #       echo "password" | sudo -S whoami
+  #       sudo rm -rf /tmp/app/
+  #       sudo rm -rf /tmp/db/
+  #       echo "y" | docker image prune -a
+  #       echo "y" | docker volume prune
         
 
   
