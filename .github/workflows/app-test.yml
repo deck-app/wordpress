@@ -70,7 +70,7 @@ jobs:
     - name: Web site Test
       run: |
         sleep 50s
-        sudo curl -I --http2 http://localhost:44181/
+        curl -i http://localhost:44181/
     - name: Verify MariaDB running from host, create Database and show Database
       run: |
         sleep 30s
