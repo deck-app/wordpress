@@ -31,6 +31,9 @@ jobs:
       run: |
         sleep 50s
         sudo curl -I --http2 http://localhost:44181/ | grep http
+    - name: check
+      if: http == 'http://localhost:44181/wp-admin/install.php'
+      run:  echo "Site working..."
     - name: Verify MariaDB running from host, create Database and show Database
       run: |
         sleep 30s
