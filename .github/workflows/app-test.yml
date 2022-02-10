@@ -71,7 +71,6 @@ jobs:
       run: docker logs wordpress_wordpress_1 
     - name: Web site Test
       run: |
-        sleep 90s
         curl -i http://localhost:44181/
     - name: Verify MariaDB running from host, create Database and show Database
       run: |
