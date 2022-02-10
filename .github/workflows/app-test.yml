@@ -29,6 +29,7 @@ jobs:
       run: docker exec wordpress_wordpress_1 php -m | grep mysqli
     - name: Web site Test
       run: |
+        sleep 50s
         sudo curl -I --http2 http://localhost:44181/
     - name: Verify MariaDB running from host, create Database and show Database
       run: |
