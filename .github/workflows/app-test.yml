@@ -30,7 +30,7 @@ jobs:
     - name: Web site Test
       run: |
         sleep 50s
-        sudo curl -I --http2 http://localhost:44181/ | grep http
+        sudo curl -I --http2 http://localhost:44181/
     - name: Verify MariaDB running from host, create Database and show Database
       run: |
         sleep 30s
@@ -72,7 +72,7 @@ jobs:
     - name: Web site Test
       run: |
         sleep 30s
-        curl -i http://localhost:44181/ | grep http
+        curl -i http://localhost:44181/
     - name: Verify MariaDB running from host, create Database and show Database
       run: |
         sleep 30s
