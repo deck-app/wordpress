@@ -37,20 +37,7 @@ user:
   #   target:
   #     MYSQL_VERSION
 
-  # customize_server_root_path:
-  #   label:
-  #     Server root
-  #   type:
-  #     input
-  #   values:
-  #     /var/www/html
-  #   hint:
-  #     Server document root
-  #   target:
-  #     DOCUMENT_ROOT
-
-#System defaults
-MariaDB_version:
+  MariaDB_version:
     label:
       MariaDB version
     hint:
@@ -64,6 +51,9 @@ MariaDB_version:
       - 10.5
     target:
       MARIADB_VERSION
+
+#System defaults
+
 system:
   show_localpath_selector:
     true
