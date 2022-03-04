@@ -23,8 +23,8 @@ jobs:
           DB_PASSWORD:  password
           DB_ROOT_PASSWORD: password
           DATA_PATH_HOST: /tmp/db
-          USER_ID: "1000"
-          GROUP_ID: "1000"
+          USER_ID: "0"
+          GROUP_ID: "0"
     - name: PHP version check
       run : docker exec wordpress_wordpress_1 php -v
     - name: Mysql Driver check
