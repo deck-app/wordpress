@@ -2,7 +2,7 @@ name: Wordpress Stack
 
 on:
   schedule:
-  - cron:  '30 6,18 * * *'
+  - cron:  '30 6 * * *'
   push:
     branches: [ master ]
   pull_request:
@@ -23,8 +23,8 @@ jobs:
           DB_PASSWORD:  password
           DB_ROOT_PASSWORD: password
           DATA_PATH_HOST: /tmp/db
-          USER_ID: 1000
-          GROUP_ID: 1000
+          USER_ID: "1000"
+          GROUP_ID: "1000"
     - name: PHP version check
       run : docker exec wordpress_wordpress_1 php -v
     - name: Mysql Driver check
