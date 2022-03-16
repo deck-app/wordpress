@@ -17,12 +17,14 @@ jobs:
       run: docker-compose -f "docker-compose.yml" up -d --build
       env:
           MARIADB_VERSION: latest
-          APP_CODE_PATH_HOST: /tmp/app
+          APP_CODE_PATH_HOST: /tmp/wordpress
           DB_NAME: test
           DB_USER:  admin
           DB_PASSWORD:  password
           DB_ROOT_PASSWORD: password
           DATA_PATH_HOST: /tmp/db
+          USER_ID: "0"
+          GROUP_ID: "0"
     - name: PHP version check
       run : docker exec wordpress_wordpress_1 php -v
     - name: Mysql Driver check
@@ -48,10 +50,10 @@ jobs:
     - name: Destroy Container and file
       run:  |
         docker-compose down
-        sudo rm -rf /tmp/app
-        sudo rm -rf /tmp/db
         echo "y" | docker image prune -a
         echo "y" | docker volume prune
+        sudo rm -rf /tmp/wordpress
+        sudo rm -rf /tmp/db
   Wordpress-Mariadb-ARM64:
     runs-on: self-hosted
     steps:
@@ -60,12 +62,14 @@ jobs:
       run: docker-compose -f "docker-compose.yml" up -d --build
       env:
           MARIADB_VERSION: latest
-          APP_CODE_PATH_HOST: /tmp/app
+          APP_CODE_PATH_HOST: /tmp/wordpress
           DB_NAME: test
           DB_USER:  admin
           DB_PASSWORD:  password
           DB_ROOT_PASSWORD: password
-          DATA_PATH_HOST: /tmp/wordpress
+          DATA_PATH_HOST: /tmp/db
+          USER_ID: "0"
+          GROUP_ID: "0"
     - name: PHP version check
       run : docker exec wordpress-wordpress-1 php -v
     - name: Mysql Driver check
