@@ -71,29 +71,29 @@ jobs:
           USER_ID: "0"
           GROUP_ID: "0"
     - name: PHP version check
-      run : docker exec wordpress-wordpress-1 php -v
+      run : docker exec wordpress_wordpress_1 php -v
     - name: Mysql Driver check
-      run: docker exec wordpress-wordpress-1 php -m | grep mysqli
+      run: docker exec wordpress_wordpress_1 php -m | grep mysqli
     - name: Log check list
-      run: docker logs wordpress-wordpress-1 
+      run: docker logs wordpress_wordpress_1 
     - name: Web site Test
       run: |
         sleep 30s
         curl -i http://localhost:44181/
     - name: Verify MariaDB running from host, create Database and show Database
       run: |
-        while ! docker exec wordpress-mysql-1 mysqladmin --user=root --password=password --host "mysql" ping --silent &> /dev/null ; do
+        while ! docker exec wordpress_wordpress_1 mysqladmin --user=root --password=password --host "mysql" ping --silent &> /dev/null ; do
             echo "Waiting for database connection..."
             sleep 2
         done
     - name: Check MariaDB version
-      run:  docker exec wordpress-mysql-1 mysql -uroot -ppassword -e "SHOW VARIABLES LIKE '%version%';"
+      run:  docker exec wordpress_wordpress_1 mysql -uroot -ppassword -e "SHOW VARIABLES LIKE '%version%';"
     - name: Verify MariaDB database from user
-      run:  docker exec wordpress-mysql-1 mysql -uadmin -ppassword -e "SHOW DATABASES"
+      run:  docker exec wordpress_wordpress_1 mysql -uadmin -ppassword -e "SHOW DATABASES"
     - name: Create a Database
-      run:  docker exec wordpress-mysql-1 mysql -uroot -ppassword -e "CREATE DATABASE deckapp"
+      run:  docker exec wordpress_wordpress_1 mysql -uroot -ppassword -e "CREATE DATABASE deckapp"
     - name: Verify Database create or not
-      run:  docker exec wordpress-mysql-1 mysql -uroot -ppassword -e "SHOW DATABASES"
+      run:  docker exec wordpress_wordpress_1 mysql -uroot -ppassword -e "SHOW DATABASES"
     - name: Destroy Container 
       run: |
         docker-compose down
