@@ -77,7 +77,7 @@ jobs:
     - name: Mysql Driver check
       run: docker exec wordpress-wordpress-1 php -m | grep mysqli
     - name: Wordpress CLI check
-      run: docker exec wordpress_wordpress_1 wp --info | grep WP-CLI
+      run: docker exec wordpress-wordpress-1 wp --info | grep WP-CLI
     - name: Log check list
       run: docker logs wordpress-wordpress-1 
     - name: Web site Test
