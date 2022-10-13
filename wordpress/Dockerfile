@@ -1,4 +1,4 @@
-FROM ghcr.io/deck-app/wordpress:latest
+FROM ghcr.io/deck-app/wordpress:6
 LABEL maintainer Naba Das <hello@get-deck.com>
 
 # User ID defined
