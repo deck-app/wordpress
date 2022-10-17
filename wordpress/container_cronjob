@@ -1,0 +1,1 @@
+@reboot root sh /usr/local/bin/permission.sh >> /var/log/cron.log
