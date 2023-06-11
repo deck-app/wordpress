@@ -21,7 +21,7 @@ jobs:
     - name: Build the Docker image wordpress latest
       run: docker-compose -f "docker-compose.yml" up -d --build
       env:
-          MARIADB_VERSION: latest
+          MARIADB_VERSION: 10.7
           APP_CODE_PATH_HOST: /tmp/wordpress
           DB_NAME: test
           DB_USER:  admin
