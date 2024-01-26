@@ -2,7 +2,7 @@ name: Wordpress
 
 on:
   schedule:
-  - cron:  '30 01 * * *'
+  - cron:  '00 02 * * *'
   push:
     branches: [ master ]
   pull_request:
